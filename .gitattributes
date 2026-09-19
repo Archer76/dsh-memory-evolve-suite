@@ -1,0 +1,6 @@
+# 内置技能的 SKILL.md 必须保持 LF 换行。
+#
+# 原因：lib/coi/skills-sync.js 的版本判据用 /^---\n/ 与 /^x-version:\s*(\d+)\s*$/m，
+# 前者不带 \r 容错。文件一旦被签出成 CRLF，x-version 会读成 0，升级覆盖逻辑静默失效
+# （技能能装上，但插件升级后再也不会更新它们）。
+skills/**/SKILL.md text eol=lf
