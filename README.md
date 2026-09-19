@@ -19,7 +19,7 @@
 
 **想要原版**：`dsh plugin --profile web add github:csyangwen/dsh-memory-evolve`。
 
-**关于自动更新**：版本检测（`lib/update.js`）需要一个可 `git fetch` 的远端。本包已发布在 `https://github.com/Archer76/dsh-memory-evolve-suite`：用 `git clone` 克隆后安装，「版本」页即可检测新版本并一键更新（更新走 `git fetch` + `checkout --detach`，不动你的记忆数据）。从本地目录或 zip 安装时没有远端，该页会提示不支持自动检测——这是预期行为，不影响任何记忆功能。
+**关于自动更新**：版本检测（`lib/update.js`）需要一个可 `git fetch` 的远端**外加一份完整的 `.git` 工作副本**，两者缺一不可。本包已发布在 `https://github.com/Archer76/dsh-memory-evolve-suite`：用 `git clone` 克隆后安装（`dsh plugin add <克隆目录>`），「版本」页即可检测新版本并一键更新（更新走 `git fetch` + `checkout --detach`，不动你的记忆数据）。以下三种安装方式拿不到自动更新，都属预期，且都不影响任何记忆功能——① 从 zip 或纯本地目录安装：没有远端；② 用插件市场安装，或 `pnpm add github:...` / `dsh plugin add <git 地址>`：实测 git 依赖安装会把 `.git` 剥掉（走市场的用户请用市场自带的「更新」按钮，它会重跑一次安装）；③ 手工拷进 profile 的目录。
 
 ---
 
@@ -157,4 +157,4 @@ node --test tests/tools.test.js            # 辅助脚本：语法、无参提�
 
 ## 来源与许可
 
-基于 `dsh-memory-evolve` v0.1.0（作者 csyangwen，MIT，`https://github.com/csyangwen/dsh-memory-evolve`）修改而来：包名改为 `dsh-memory-evolve-suite`、版本 0.3.0，新增上述 3 份技能与 `tools/`、`tests/`，并对应调整 `lib/coi/skills-sync.js` 的内置技能清单（4 → 7 项）；上游的功能逻辑未改。上游两篇使用场景指南保留在 `docs/上游-使用场景指南.md` 与 `docs/上游-使用场景指南.en.md`（其中的包名与安装命令已对齐本包）。原始 `LICENSE` 保留在包根。
+基于 `dsh-memory-evolve` v0.1.0（作者 csyangwen，MIT，`https://github.com/csyangwen/dsh-memory-evolve`）修改而来：包名改为 `dsh-memory-evolve-suite`、版本 0.3.1，新增上述 3 份技能与 `tools/`、`tests/`，并对应调整 `lib/coi/skills-sync.js` 的内置技能清单（4 → 7 项）；上游的功能逻辑未改。上游两篇使用场景指南保留在 `docs/上游-使用场景指南.md` 与 `docs/上游-使用场景指南.en.md`（其中的包名与安装命令已对齐本包）。原始 `LICENSE` 保留在包根。
