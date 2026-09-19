@@ -19,7 +19,7 @@ Related docs: [Detailed feature guide](README-详细说明.md) · [Memory & revi
 
 **Want the original?** `dsh plugin --profile web add github:csyangwen/dsh-memory-evolve`.
 
-**About auto-update**: version detection (`lib/update.js`) needs a remote it can `git fetch` from. Installed from a local directory or a zip there is no remote, so the Version tab reports that auto-check is unavailable — expected, and it affects no memory feature. Put the package in your own git repo if you want it enabled.
+**About auto-update**: version detection (`lib/update.js`) needs a remote it can `git fetch` from. This package is published at `https://github.com/Archer76/dsh-memory-evolve-suite`: install it from a `git clone` and the Version tab can detect new releases and update in one click (the update does `git fetch` + `checkout --detach`; your memory data is untouched). Installed from a local directory or a zip there is no remote, so the tab reports auto-check unavailable — expected, and it affects no memory feature.
 
 ---
 
@@ -28,8 +28,12 @@ Related docs: [Detailed feature guide](README-详细说明.md) · [Memory & revi
 The plugin ships its own `cordis.patch.yml` (declared via `dsh.bundle.patch`), so after `dsh plugin add` the **host side registers automatically — no manual configuration needed**. Using the web profile as an example, two steps:
 
 ```sh
-# 1. Install into the profile (replace <this package directory> with the directory
-#    you extracted/cloned; link:<path> or your own git address also work)
+# 0. (optional) Want the Version tab to auto-update? Clone first so the plugin
+#    directory carries a git remote:
+git clone https://github.com/Archer76/dsh-memory-evolve-suite.git
+
+# 1. Install into the profile (replace <this package directory> with the cloned or
+#    extracted directory; link:<path> also works)
 dsh plugin --profile web add <this package directory>
 
 # 2. Restart dsh web — done
@@ -155,4 +159,4 @@ node --test tests/tools.test.js            # helper scripts: syntax, usage outpu
 
 ## Origin and License
 
-Derived from `dsh-memory-evolve` v0.1.0 (author csyangwen, MIT, `https://github.com/csyangwen/dsh-memory-evolve`): the package was renamed to `dsh-memory-evolve-suite`, version 0.2.0, with the 3 skills above plus `tools/` and `tests/` added, and the bundled-skill list in `lib/coi/skills-sync.js` adjusted from 4 to 7 items. Upstream feature logic is unchanged. The two upstream usage-scenario guides are kept as `docs/上游-使用场景指南.md` and `docs/上游-使用场景指南.en.md` (package name and install commands inside them are aligned with this build). The original `LICENSE` stays in the package root.
+Derived from `dsh-memory-evolve` v0.1.0 (author csyangwen, MIT, `https://github.com/csyangwen/dsh-memory-evolve`): the package was renamed to `dsh-memory-evolve-suite`, version 0.3.0, with the 3 skills above plus `tools/` and `tests/` added, and the bundled-skill list in `lib/coi/skills-sync.js` adjusted from 4 to 7 items. Upstream feature logic is unchanged. The two upstream usage-scenario guides are kept as `docs/上游-使用场景指南.md` and `docs/上游-使用场景指南.en.md` (package name and install commands inside them are aligned with this build). The original `LICENSE` stays in the package root.

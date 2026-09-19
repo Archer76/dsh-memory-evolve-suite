@@ -1,6 +1,10 @@
 {
   "name": "dsh-memory-evolve-suite",
-  "version": "0.2.0",
+  "version": "0.3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Archer76/dsh-memory-evolve-suite.git"
+  },
   "description": "为 DeepSeek Harness 带来分层记忆（全局 / 用户 / 项目 / GIT 分支 / 每日）与自我进化（经验沉淀 + 技能自动创建）和技能管理、待办管理、CLI 调度（kimi/codex/grok/hermes 等外部 AI 统一调度）、临时信息便签，带 WebUI 管理界面。Hermes-style long-term memory, self-evolution, skills, todos and external CLI agent dispatch for DeepSeek Harness. 本构建另内置三份记忆运维技能（压缩 / 整理 / 注入轨毒源取证）。",
   "private": true,
   "type": "module",
