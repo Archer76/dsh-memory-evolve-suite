@@ -1097,7 +1097,7 @@
   text-decoration: line-through;
 }
 
-/* ---------- dsh-memory-evolve integration ---------- */
+/* ---------- dsh-memory-evolve-suite integration ---------- */
 
 /* Inside the session memory tab, cap the height like the other feature
    panels (62vh) so the skill manager never grows the page; the three panes

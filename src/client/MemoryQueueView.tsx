@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — session memory tab feature panels.
+ * dsh-memory-evolve-suite — session memory tab feature panels.
  *
  * The three sub-tabs of the session memory tab, migrated from the former
  * settings-panel section (MemoryPanel, now removed): the pending memory

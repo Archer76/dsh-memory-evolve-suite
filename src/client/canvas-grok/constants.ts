@@ -51,7 +51,7 @@ export const CURRENT_SESSION_LABEL = '当前会话'
 export const OTHER_SESSION_ID = 'sess-demo-other'
 export const OTHER_SESSION_LABEL = '上周评审会'
 export const CURRENT_PROJECT_ID = 'proj-demo'
-export const CURRENT_PROJECT_LABEL = 'dsh-memory-evolve'
+export const CURRENT_PROJECT_LABEL = 'dsh-memory-evolve-suite'
 export const OTHER_PROJECT_ID = 'proj-other'
 export const OTHER_PROJECT_LABEL = '客户合同库'
 
@@ -150,7 +150,7 @@ export function createSeedNodes(now: number): CanvasNode[] {
       scope: 'project',
       scopeLabel: CURRENT_PROJECT_LABEL,
       projectId: CURRENT_PROJECT_ID,
-      path: '/Users/edgar/.dsh/plugins/dsh-memory-evolve/docs-local',
+      path: '/Users/edgar/.dsh/plugins/dsh-memory-evolve-suite/docs-local',
       placement: defaultPlacement('folder', 720, 280, 2),
       meta: { size: '12 项', mtime: '2026-08-13' },
       createdAt: now - 3_600_000,

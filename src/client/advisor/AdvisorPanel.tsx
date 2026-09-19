@@ -43,7 +43,7 @@ type PanelTab = 'scopes' | 'live' | 'history' | 'settings'
  * （CSS right: 0），拖动时不做任何水平位移。清除键值/删除 key 即回默认
  * 位置（top 42%）。
  */
-const CAPSULE_POS_KEY = 'dsh-memory-evolve:advisor-capsule-pos'
+const CAPSULE_POS_KEY = 'dsh-memory-evolve-suite:advisor-capsule-pos'
 
 /** 单次指针会话的拖拽状态：记录起点用于区分"点击"与"拖拽"。 */
 interface CapsuleDragState {

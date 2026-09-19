@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — todo sub-tab（待办）。
+ * dsh-memory-evolve-suite — todo sub-tab（待办）。
  *
  * 四轨待办管理器：生活 / 工作 / 项目（按工作目录隔离）/ 每日（按天）。
  * 支持两种视图：

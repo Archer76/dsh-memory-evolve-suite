@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — todos tab (conversation.view entry).
+ * dsh-memory-evolve-suite — todos tab (conversation.view entry).
  *
  * 独立待办 Tab（从原「记忆技能待办」Tab 拆分而来）：两个子 tab——
  *   「待确认待办管理」：后台审查产出的待办建议队列，采纳后写入对应待办轨
@@ -9,7 +9,7 @@
  *     过滤 + 快捷添加 + 逐条完成/编辑/删除（TodoView）。
  *
  * 子 tab 徽标显示待确认待办数（/api/badge 的 todoSuggestions 字段）：
- * 30s 轮询 + 监听 dsh-memory-evolve:badge-change 事件即时刷新；任一队列
+ * 30s 轮询 + 监听 dsh-memory-evolve-suite:badge-change 事件即时刷新；任一队列
  * 变更后由 onChanged 主动触发事件，让会话页标签的小红点同步更新。
  *
  * 样式复用 mt- 前缀（styles.css：mt-panel / mt-file-tabs / mt-feature-count）。
@@ -119,10 +119,10 @@ export function TodosTabView(props: ConvViewProps & TodosTabViewProps): JSX.Elem
     pollBadge()
     const timer = window.setInterval(pollBadge, 30_000)
     const onChange = (): void => pollBadge()
-    window.addEventListener('dsh-memory-evolve:badge-change', onChange)
+    window.addEventListener('dsh-memory-evolve-suite:badge-change', onChange)
     return () => {
       window.clearInterval(timer)
-      window.removeEventListener('dsh-memory-evolve:badge-change', onChange)
+      window.removeEventListener('dsh-memory-evolve-suite:badge-change', onChange)
     }
   }, [pollBadge])
 
@@ -171,7 +171,7 @@ export function TodosTabView(props: ConvViewProps & TodosTabViewProps): JSX.Elem
             // 队列变更后：刷新本组件徽标，并通知宿主层（index.ts）立即重查
             // badge，让会话页标签的小红点即时更新（不等 30s 轮询）。
             pollBadge()
-            window.dispatchEvent(new CustomEvent('dsh-memory-evolve:badge-change'))
+            window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:badge-change'))
           }}
         />
       )}

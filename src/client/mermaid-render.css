@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — Mermaid 图表渲染样式。
+ * dsh-memory-evolve-suite — Mermaid 图表渲染样式。
  *
  * .me-mermaid-wrap 是替换 .md-code-block 正文（pre）后包 SVG 的滚动容器：
  * - max-width:100% + overflow-x:auto：大图（几十节点）在窄屏（手机）与

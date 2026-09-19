@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — session memory tab (conversation.view entry).
+ * dsh-memory-evolve-suite — session memory tab (conversation.view entry).
  *
  * Shows the global rule file and the five memory tracks inline, read-only,
  * plus an "open with system tool" button per file. Editing happens through
@@ -628,7 +628,7 @@ export function MemoryTabView(props: ConvViewProps & MemoryTabViewProps): JSX.El
               // 队列变更后：刷新本组件计数，并通知宿主层（index.ts）
               // 立即重查 badge，让会话页标签的小红点即时更新（不等 30s 轮询）。
               pollBadge()
-              window.dispatchEvent(new CustomEvent('dsh-memory-evolve:badge-change'))
+              window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:badge-change'))
             }}
           />
         )

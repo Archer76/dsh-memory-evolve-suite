@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — Web UI 设置 Tab（conversation.view entry）。
+ * dsh-memory-evolve-suite — Web UI 设置 Tab（conversation.view entry）。
  *
  * 「Web UI 设置」Tab：本模块的操作/说明界面，两个子 Tab：
  *   「综合」：**各功能的小开关列表**（用户拍板：每个功能设置都要有单独

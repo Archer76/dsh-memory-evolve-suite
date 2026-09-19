@@ -1,4 +1,4 @@
-# dsh-memory-evolve 使用场景指南
+# dsh-memory-evolve-suite 使用场景指南
 
 > **一句话**：让 DSH 里的 AI 拥有跨会话的长期记忆、帮你管理待办与技能、还能拉起一群 AI 会话和外部 AI 代理协同干活——**越用越懂你，换会话不丢上下文**。
 >
@@ -8,13 +8,30 @@
 
 ---
 
+## 关于本包（再分发构建）
+
+**本包是 `dsh-memory-evolve-suite`，不是原版。** 它基于原作者 **csyangwen** 的 **[dsh-memory-evolve](https://github.com/csyangwen/dsh-memory-evolve)** v0.1.0（MIT 许可）制作，**插件本体的功能逻辑未做任何改动**，差别只有四项：
+
+| 项 | 内容 |
+|---|---|
+| 包与插件名 | 由 `dsh-memory-evolve` 改为 `dsh-memory-evolve-suite`。插件行 id、客户端注册 id、日志标签、配置键名、锁与缓存目录名同步改名，因此**可与上游原版并存安装、互不覆盖** |
+| 内置技能 | `skills/` 由 4 份增至 7 份，新增 `dsh-memory-compression`、`dsh-memory-curation`、`dsh-injection-track-triage` |
+| 辅助脚本 | 新增 `tools/`：15 个参数化的记忆压缩、过期审计与会话取证脚本（已通用化，不含任何私人数据） |
+| 出厂测试 | 新增 `tests/bundled-skills.test.js`、`tests/tools.test.js` |
+
+**想要原版**：`dsh plugin --profile web add github:csyangwen/dsh-memory-evolve`。
+
+**关于自动更新**：版本检测（`lib/update.js`）需要一个可 `git fetch` 的远端。本包从本地目录或 zip 安装时没有远端，因此「版本」页会提示不支持自动检测——这是预期行为，不影响任何记忆功能。要启用就把它放进你自己的 git 仓库再安装。
+
+---
+
 ## 快速开始（安装）
 
 插件包内自带 `cordis.patch.yml`（`dsh.bundle.patch` 声明），`dsh plugin add` 安装后 **host 端自动注册，无需任何手动配置**。以 web profile 为例，两步装好：
 
 ```sh
-# 1. 安装到 profile（本地目录用 link:，也可用 git/registry 包地址）
-dsh plugin --profile web add github:csyangwen/dsh-memory-evolve
+# 1. 安装到 profile（把 <本包目录> 换成你解压/克隆出来的这个目录；也接受 link:<路径> 或你自己的 git 地址）
+dsh plugin --profile web add <本包目录>
 
 # 2. 重启 dsh web 即生效
 ```
@@ -24,7 +41,7 @@ dsh plugin --profile web add github:csyangwen/dsh-memory-evolve
 **修改默认配置**（如开启回合内记忆审查）：在 profile 的 `cordis.patch.yml` 用 id 覆盖（顶层写法，非 insert）：
 
 ```yaml
-- id: dsh-memory-evolve
+- id: dsh-memory-evolve-suite
   config:
     reviewEnabled: true      # 开启回合内记忆审查（默认关）
     reviewInterval: 10       # 每 10 个用户回合审查一次
@@ -33,13 +50,13 @@ dsh plugin --profile web add github:csyangwen/dsh-memory-evolve
 **插件异常导致 DSH 无法启动时，临时禁用**（等修复后取消）：同样在 profile 的 `cordis.patch.yml` 加一行即可，无需卸载：
 
 ```yaml
-- id: dsh-memory-evolve
+- id: dsh-memory-evolve-suite
   disabled: true
 ```
 
 **从旧版本升级**：若你此前按旧文档手动 insert 过本插件，请删除 profile patch 里的 insert 行（否则与 bundle 自动注册重复）。
 
-卸载：`dsh plugin --profile web remove dsh-memory-evolve`，一切效果随插件卸载自动清理。
+卸载：`dsh plugin --profile web remove dsh-memory-evolve-suite`，一切效果随插件卸载自动清理。
 
 ---
 
@@ -294,7 +311,7 @@ AI 的对话是「一次性」的：换项目、隔几天、开新会话，它�
 git push origin main
 
 # 2. 用发版脚本一键完成：工作树/远端同步检查 → 构建 → 全量测试 → 打 annotated tag → 推送 tag
-bash ~/shell/dsh-memory-evolve-release.sh v26081302 -m "发布说明：……"
+bash ~/shell/dsh-memory-evolve-suite-release.sh v26081302 -m "发布说明：……"
 ```
 
 **各设备更新（使用者）**：

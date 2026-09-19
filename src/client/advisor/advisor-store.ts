@@ -8,7 +8,7 @@
 import { useEffect, useMemo, useSyncExternalStore } from 'react'
 
 /** index.ts 将 DSH 的 connection/reset 桥接为这个浏览器事件。 */
-export const ADVISOR_CONNECTION_RESET_EVENT = 'dsh-memory-evolve:advisor-connection-reset'
+export const ADVISOR_CONNECTION_RESET_EVENT = 'dsh-memory-evolve-suite:advisor-connection-reset'
 
 const API = '/memory-evolve/api/advisor'
 

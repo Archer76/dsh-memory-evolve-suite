@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — version tab (settings tab sub-entry).
+ * dsh-memory-evolve-suite — version tab (settings tab sub-entry).
  *
  * 「版本」子 Tab：插件版本检测与手动更新界面（一期）。
  *
@@ -100,7 +100,7 @@ export function VersionTabView(props: VersionTabTabProps): JSX.Element {
         setState(data)
         // 状态变化（红点 0/1）广播给宿主层：index.ts 的 badge 监听会同步
         // 各 Tab 红点（设置 Tab 的 🔴 由此出现/消失）。
-        window.dispatchEvent(new CustomEvent('dsh-memory-evolve:badge-change'))
+        window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:badge-change'))
       })
       .catch((err: unknown) => setError({ code: 'network', message: err instanceof Error ? err.message : 'network error' }))
       .finally(() => setChecking(false))
@@ -136,7 +136,7 @@ export function VersionTabView(props: VersionTabTabProps): JSX.Element {
           /* 状态刷新失败：保持"更新已完成"呈现，不覆盖为错误 */
         }
         setError(null)
-        window.dispatchEvent(new CustomEvent('dsh-memory-evolve:badge-change'))
+        window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:badge-change'))
       })
       .catch((err: unknown) => setError({ code: 'network', message: err instanceof Error ? err.message : 'network error' }))
       .finally(() => setUpdating(false))

@@ -225,8 +225,8 @@ export function BookmarksView(props: ConvViewProps & BookmarksViewProps): JSX.El
   // 星标创建/删除后即时刷新列表。
   useEffect(() => {
     const onChange = (): void => load()
-    window.addEventListener('dsh-memory-evolve:bookmarks-change', onChange)
-    return () => window.removeEventListener('dsh-memory-evolve:bookmarks-change', onChange)
+    window.addEventListener('dsh-memory-evolve-suite:bookmarks-change', onChange)
+    return () => window.removeEventListener('dsh-memory-evolve-suite:bookmarks-change', onChange)
   }, [load])
 
   const onJump = (bm: Bookmark): void => {

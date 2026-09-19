@@ -1,10 +1,10 @@
 ---
 name: kimi-cli-calling
-x-provider: dsh-memory-evolve
+x-provider: dsh-memory-evolve-suite
 x-version: 1
 description: Use when the user wants to invoke Kimi Code CLI from the command line without entering the interactive TUI — one-shot queries, scripting/piping, non-interactive task execution. Covers `kimi -p` prompt mode, --output-format, -m model override, -c/--session resume, --skills-dir/--agent/--add-dir/--plan, and subcommands (acp, web, export, login, doctor, vis, upgrade). 触发场景:用户在命令行直接让 Kimi 干活、不进交互界面、写脚本调用、管道传参、非交互调用 kimi。
 ---
-<!-- 本技能由 dsh-memory-evolve 插件（COI 调度模块）内置提供：源头随插件升级同步，禁用请到「技能管理」Tab -->
+<!-- 本技能由 dsh-memory-evolve-suite 插件（COI 调度模块）内置提供：源头随插件升级同步，禁用请到「技能管理」Tab -->
 
 
 # 在 CLI 里直接调用 Kimi Code 做事(不进 TUI)

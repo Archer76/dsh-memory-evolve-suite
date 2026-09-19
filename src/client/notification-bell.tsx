@@ -77,7 +77,7 @@ const POLL_MS = 30000
  * 值形如 `{ "side": "right", "top": 97 }`：side 只存左右，left 像素每次按视口重算，
  * 这样窗口缩放后仍贴边，不会漂到屏幕中间。
  */
-const POS_KEY = 'dsh-memory-evolve:notify-bell-pos'
+const POS_KEY = 'dsh-memory-evolve-suite:notify-bell-pos'
 /** 位移超过该像素才算拖拽，否则视为点击展开/收起。 */
 const DRAG_THRESHOLD_PX = 6
 /** 与 CSS @media (max-width: 767px) 对齐。 */
@@ -441,10 +441,10 @@ function Bell({ openSession, t }: NotificationBellOpts): JSX.Element {
     const timer = window.setInterval(poll, POLL_MS)
     // 通知写入后（de_notify 落盘）前端无法直接感知，靠 30s 轮询兜底；
     // badge-change 事件供其他操作（全部已读/删除）即时刷新。
-    window.addEventListener('dsh-memory-evolve:badge-change', poll)
+    window.addEventListener('dsh-memory-evolve-suite:badge-change', poll)
     return () => {
       window.clearInterval(timer)
-      window.removeEventListener('dsh-memory-evolve:badge-change', poll)
+      window.removeEventListener('dsh-memory-evolve-suite:badge-change', poll)
     }
   }, [poll])
 

@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — DSH UI 设置模块：功能开关（共享状态）。
+ * dsh-memory-evolve-suite — DSH UI 设置模块：功能开关（共享状态）。
  *
  * 模块内每个功能都有**独立的小开关**（用户拍板：设置 Tab 的「综合」子
  * tab 里逐项开关）。开关是纯客户端偏好，存 localStorage；任何改动通过
@@ -27,10 +27,10 @@ export interface UiSettingsFeatures {
 }
 
 /** localStorage 键。 */
-const FEATURES_KEY = 'dsh-memory-evolve:ui-settings:features'
+const FEATURES_KEY = 'dsh-memory-evolve-suite:ui-settings:features'
 
 /** 功能开关变更事件名（detail 为最新 features）。 */
-export const FEATURES_EVENT = 'dsh-memory-evolve:ui-settings-features'
+export const FEATURES_EVENT = 'dsh-memory-evolve-suite:ui-settings-features'
 
 /** 默认值：全部功能默认关闭（用户拍板：由用户主动开启）。 */
 const DEFAULTS: UiSettingsFeatures = { sessionFilter: false, wideChat: false, wideBubble: false, contextWarn: false, mermaidRender: false }

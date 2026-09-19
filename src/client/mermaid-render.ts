@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — Mermaid 图表渲染（DSH UI 设置模块·功能六）。
+ * dsh-memory-evolve-suite — Mermaid 图表渲染（DSH UI 设置模块·功能六）。
  *
  * 背景（调研 docs-local/Mermaid显示支持-调研-20260810.md）：DSH Web GUI 的
  * Markdown 渲染管线（ui-primitives render.tsx / CodeBlock / Shiki 语法
@@ -375,7 +375,7 @@ async function renderBlock(block: HTMLElement, source: string, state: BlockState
   } catch (error) {
     state.engineFails += 1
     if (state.engineFails === 1) {
-      console.warn('[dsh-memory-evolve] mermaid engine load failed, will retry:', error)
+      console.warn('[dsh-memory-evolve-suite] mermaid engine load failed, will retry:', error)
     }
     return
   }
@@ -432,7 +432,7 @@ async function renderBlock(block: HTMLElement, source: string, state: BlockState
       block.setAttribute(FAILED_MARK, '')
       showErrorHint(block, lastError)
     }
-    console.warn(`[dsh-memory-evolve] mermaid render failed (attempt ${state.failCount}):`, lastError)
+    console.warn(`[dsh-memory-evolve-suite] mermaid render failed (attempt ${state.failCount}):`, lastError)
   } finally {
     state.rendering = false
   }

@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — DSH UI 设置模块样式（ui- 前缀，独立注入）。
+ * dsh-memory-evolve-suite — DSH UI 设置模块样式（ui- 前缀，独立注入）。
  *
  * 全部使用 DSH 设计 token（--dsw-alias-*），深浅色主题自动适配；后续
  * 主题功能（CSS 变量覆盖）可直接接管本文件。

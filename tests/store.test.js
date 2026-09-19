@@ -406,8 +406,8 @@ test('daily entries are tagged with the originating project by the program', () 
   assert.match(store.entriesOf('daily')[0], /^\[\d{2}:\d{2}\] \[260805\/1\] 完成名片页$/)
   // meaningful basenames stand alone (this repo IS a git worktree, so a
   // program-tagged [git …] prefix may appear — accept either)
-  store.add('daily', '改提示词', { session: { header: { cwd: '/Users/edgar/.dsh/plugins/dsh-memory-evolve' } } })
-  assert.match(store.entriesOf('daily')[1], /^\[\d{2}:\d{2}\] (\[git [^\]]+\] )?\[dsh-memory-evolve\] 改提示词$/)
+  store.add('daily', '改提示词', { session: { header: { cwd: '/Users/edgar/.dsh/plugins/dsh-memory-evolve-suite' } } })
+  assert.match(store.entriesOf('daily')[1], /^\[\d{2}:\d{2}\] (\[git [^\]]+\] )?\[dsh-memory-evolve-suite\] 改提示词$/)
   // no cwd → no project tag, plain [HH:MM] stamp
   store.add('daily', '无目录会话')
   assert.match(store.entriesOf('daily')[2], /^\[\d{2}:\d{2}\] 无目录会话$/)

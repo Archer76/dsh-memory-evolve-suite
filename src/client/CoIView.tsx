@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — COI 调度 tab（conversation.view 第二个 entry）。
+ * dsh-memory-evolve-suite — COI 调度 tab（conversation.view 第二个 entry）。
  *
  * 统一调度 kimi/codex/grok/hermes 等 CLI 代理的 Web 面板：顶部六个子 Tab
  * （任务/会话/适配器/模板/统计/配置）。数据全部来自 host 的
@@ -908,7 +908,7 @@ function TasksPane({ dsSessionId }: { dsSessionId?: string }): JSX.Element {
       setRefTaskId('')
       void loadTasks()
       // 通知宿主层重查 COI Tab 红点（新任务立即可见，不等 30s 轮询）。
-      window.dispatchEvent(new CustomEvent('dsh-memory-evolve:badge-change'))
+      window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:badge-change'))
     } catch (err) {
       setNotice({ kind: 'error', text: errText(err) })
     } finally {

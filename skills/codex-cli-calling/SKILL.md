@@ -1,10 +1,10 @@
 ---
 name: codex-cli-calling
-x-provider: dsh-memory-evolve
+x-provider: dsh-memory-evolve-suite
 x-version: 1
 description: "Use when the user wants to invoke Codex directly from a terminal without opening the interactive TUI, including one-shot tasks, repository edits, shell scripts, stdin pipelines, CI/automation, structured JSON output, or resuming a non-interactive session. Covers `codex exec`, working-directory and sandbox selection, output capture, JSONL/schema output, and safe automation. 触发场景：用户询问如何在 CLI/命令行里直接调用 Codex 做事、非交互执行任务、脚本或管道调用 Codex、让 Codex 自动修改项目、获取机器可读结果。"
 ---
-<!-- 本技能由 dsh-memory-evolve 插件（COI 调度模块）内置提供：源头随插件升级同步，禁用请到「技能管理」Tab -->
+<!-- 本技能由 dsh-memory-evolve-suite 插件（COI 调度模块）内置提供：源头随插件升级同步，禁用请到「技能管理」Tab -->
 
 
 # 在 CLI 里直接调用 Codex 做事

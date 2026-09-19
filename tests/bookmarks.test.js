@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — 会话书签模块测试。
+ * dsh-memory-evolve-suite — 会话书签模块测试。
  *
  * 覆盖：
  *   1. BookmarkStore：创建/同 seq 更新/改名/删除/按会话隔离/原子写；

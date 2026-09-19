@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — 输入栏上拉弹窗增强（DSH 移动端适配·enhance）。
+ * dsh-memory-evolve-suite — 输入栏上拉弹窗增强（DSH 移动端适配·enhance）。
  *
  * ## 背景（用户拍板 2026-08-09）
  * 手机端输入栏工具栏：左侧（加号 + 权限选择）与模型选择默认隐藏，只常驻

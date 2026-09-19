@@ -1,4 +1,4 @@
-# dsh-memory-evolve — Usage Scenario Guide
+# dsh-memory-evolve-suite — Usage Scenario Guide
 
 > **In one sentence**: Give the AI inside DSH long-term cross-session memory, help you manage todos and skills, and let you orchestrate a team of AI sessions and external AI agents working together — **the more you use it, the more it understands you, and switching sessions never loses context**.
 >
@@ -8,14 +8,31 @@
 
 ---
 
+## About This Package (Redistributed Build)
+
+**This is `dsh-memory-evolve-suite`, not the original plugin.** It is built on **csyangwen**'s **[dsh-memory-evolve](https://github.com/csyangwen/dsh-memory-evolve)** v0.1.0 (MIT). **The plugin's own feature logic is unchanged** — only four things differ:
+
+| Item | What changed |
+|---|---|
+| Package & plugin name | `dsh-memory-evolve` → `dsh-memory-evolve-suite`. The plugin row id, client registration id, log tags, config keys, lock and cache directory names were renamed too, so it **can be installed side by side with the original without overwriting it** |
+| Bundled skills | `skills/` grew from 4 to 7; added `dsh-memory-compression`, `dsh-memory-curation`, `dsh-injection-track-triage` |
+| Helper scripts | New `tools/`: 15 parameterized scripts for memory compression, expiry auditing and session forensics (generalized — no private data) |
+| Factory tests | New `tests/bundled-skills.test.js` and `tests/tools.test.js` |
+
+**Want the original?** `dsh plugin --profile web add github:csyangwen/dsh-memory-evolve`.
+
+**About auto-update**: version detection (`lib/update.js`) needs a remote it can `git fetch` from. Installed from a local directory or a zip there is no remote, so the Version tab reports that auto-check is unavailable — expected, and it affects no memory feature. Put the package in your own git repo if you want it enabled.
+
+---
+
 ## Quick Start (Installation)
 
 The plugin ships its own `cordis.patch.yml` (declared via `dsh.bundle.patch`), so after `dsh plugin add` the **host side registers automatically — no manual configuration needed**. Using the web profile as an example, two steps:
 
 ```sh
-# 1. Install into the profile (use link: for a local directory; git/registry
-#    package addresses also work)
-dsh plugin --profile web add github:csyangwen/dsh-memory-evolve
+# 1. Install into the profile (replace <this package directory> with the directory
+#    you extracted/cloned; link:<path> or your own git address also work)
+dsh plugin --profile web add <this package directory>
 
 # 2. Restart dsh web — done
 ```
@@ -25,7 +42,7 @@ dsh plugin --profile web add github:csyangwen/dsh-memory-evolve
 **Changing default config** (e.g. turning on per-turn memory review): override by id in the profile's `cordis.patch.yml` (top-level form, not an insert):
 
 ```yaml
-- id: dsh-memory-evolve
+- id: dsh-memory-evolve-suite
   config:
     reviewEnabled: true      # enable per-turn memory review (off by default)
     reviewInterval: 10       # review every 10 user turns
@@ -34,13 +51,13 @@ dsh plugin --profile web add github:csyangwen/dsh-memory-evolve
 **Temporarily disabling the plugin when it breaks DSH startup** (until the fix lands): add one line to the profile's `cordis.patch.yml` — no uninstall needed:
 
 ```yaml
-- id: dsh-memory-evolve
+- id: dsh-memory-evolve-suite
   disabled: true
 ```
 
 **Upgrading from an older version**: if you previously inserted this plugin manually per older docs, delete that insert block from your profile patch (it now duplicates the bundle registration).
 
-To uninstall: `dsh plugin --profile web remove dsh-memory-evolve`. Everything is cleaned up automatically.
+To uninstall: `dsh plugin --profile web remove dsh-memory-evolve-suite`. Everything is cleaned up automatically.
 
 ---
 
@@ -295,7 +312,7 @@ The plugin uses **git tag** as the release version identifier (two formats suppo
 git push origin main
 
 # 2. One-click with the release script: worktree/remote sync check → build → full test → annotated tag → push tag
-bash ~/shell/dsh-memory-evolve-release.sh v26081302 -m "Release notes: ……"
+bash ~/shell/dsh-memory-evolve-suite-release.sh v26081302 -m "Release notes: ……"
 ```
 
 **Update on each device (user)**:

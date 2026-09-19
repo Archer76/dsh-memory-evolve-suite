@@ -1,4 +1,4 @@
-export const RUNTIME_CONFIG_CHANGED = 'dsh-memory-evolve:runtime-config-changed'
+export const RUNTIME_CONFIG_CHANGED = 'dsh-memory-evolve-suite:runtime-config-changed'
 
 /** Framework-free lifecycle for a conditional conversation tab. */
 export function createTodoTabLifecycle(register) {

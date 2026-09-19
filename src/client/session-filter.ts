@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — 左侧会话列表「仅显示进行中」筛选 + 运行状态提示注入。
+ * dsh-memory-evolve-suite — 左侧会话列表「仅显示进行中」筛选 + 运行状态提示注入。
  *
  * 纯客户端 DOM 增强（不改 DSH 框架源码）。原理（调研文档
  * docs-local/DSH-UI设置模块-调研-20260809.md）：
@@ -40,7 +40,7 @@
 export const FILTER_BAR_ID = 'dsh-ui-filter-bar'
 
 /** localStorage 偏好键。 */
-const PREF_KEY = 'dsh-memory-evolve:ui-settings:filter'
+const PREF_KEY = 'dsh-memory-evolve-suite:ui-settings:filter'
 
 /** 运行快照轮询间隔（ms）。 */
 const RUNNING_POLL_MS = 5000

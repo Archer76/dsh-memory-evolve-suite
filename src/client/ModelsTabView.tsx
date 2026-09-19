@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — 模型设置 tab（conversation.view entry）。
+ * dsh-memory-evolve-suite — 模型设置 tab（conversation.view entry）。
  *
  * 「模型设置」Tab：以表格形式展示 DSH 现有供应商与模型（只读聚合——
  * 供应商目录 + settings 模型目录 + adapter 思考等级），并支持给每个模型

@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — 提示词 tab 样式（pm- 前缀）。
+ * dsh-memory-evolve-suite — 提示词 tab 样式（pm- 前缀）。
  * 布局：顶栏（搜索/筛选/按钮）+ 三栏主体（分类树 / 列表 / 详情表单）。
  * 颜色全部使用 DSH 设计 token（--dsw-alias-* / --dsw-static-*），深浅色
  * 自动适配；高度铺满父容器（conversation.view 的 tab 容器是 flex 列）。

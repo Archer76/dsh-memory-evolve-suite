@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — settings tab (conversation.view entry).
+ * dsh-memory-evolve-suite — settings tab (conversation.view entry).
  *
  * 「Memory Evolve 设置」Tab：整个插件的总览与配置入口，三个子 Tab——
  *   「指南」：整个插件所有功能的简单介绍（整体指南，MemoryQueueView
@@ -84,7 +84,7 @@ export function SettingsTabView(props: ConvViewProps & SettingsTabViewProps): JS
           onChanged={() => {
             // 配置变更后通知宿主层（index.ts）重查 badge（配置开关变化会影响
             // 各 Tab 的可用性，红点计数不变，但保持事件一致性）。
-            window.dispatchEvent(new CustomEvent('dsh-memory-evolve:badge-change'))
+            window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:badge-change'))
           }}
         />
       )}

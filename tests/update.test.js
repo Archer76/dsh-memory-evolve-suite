@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — 版本检测与更新模块测试（lib/update.js）。
+ * dsh-memory-evolve-suite — 版本检测与更新模块测试（lib/update.js）。
  *
  * 覆盖（对应实施文档修订版 v2 的 2.10 验证清单）：
  *   - 纯函数：parseVersion / compareVersions / parseTagRefs（严格格式过滤、
@@ -265,7 +265,7 @@ test('更新成功全链路：fetch + checkout --detach + restartRequired + rele
   assert.equal((await readTxState(checker)).restartRequired, true)
   // 状态文件在 git 管理目录（不在工作树）——checkout 后工作树不出现状态文件
   assert.equal(existsSync(join(consumer, '.update-state.json')), false)
-  assert.equal(existsSync(join(consumer, 'dsh-memory-evolve')), false)
+  assert.equal(existsSync(join(consumer, 'dsh-memory-evolve-suite')), false)
 })
 
 test('目标变化：expectedTag 不是最新 → target-changed', async () => {
@@ -415,7 +415,7 @@ test('认证失败：error 且保留最后成功状态（badge 不误变 0）', 
 test('损坏状态文件：安全重建', async () => {
   const { consumer } = setupRepo()
   const checker = createUpdateChecker({ repoDir: consumer, now: advancingClock() })
-  const cachePath = join(await stateDirOf(checker), 'dsh-memory-evolve', 'update-state.json')
+  const cachePath = join(await stateDirOf(checker), 'dsh-memory-evolve-suite', 'update-state.json')
   mkdirSync(dirname(cachePath), { recursive: true })
   writeFileSync(cachePath, '{corrupt json!!!', 'utf8')
   const s = await checker.status()
@@ -600,7 +600,7 @@ test('[P0-2] 非 owner 释放：pid/token 不匹配不删锁', async () => {
   const lock = await acquireUpdateLock(gitDir)
   assert.equal(lock.ok, true)
   // 模拟锁被其他进程接管（pid/token 都变）。
-  const lockPath = join(gitDir, 'dsh-memory-evolve', 'update.lock')
+  const lockPath = join(gitDir, 'dsh-memory-evolve-suite', 'update.lock')
   writeFileSync(lockPath, JSON.stringify({ pid: process.pid + 999, token: 'other-token', startedAt: Date.now() }), 'utf8')
   releaseUpdateLock(gitDir, lock.token)
   assert.equal(existsSync(lockPath), true, '非 owner 释放不得删锁')
@@ -616,7 +616,7 @@ test('[P0-2] stale 锁可抢占', async () => {
   mkdirSync(repo)
   sh(repo, ['init', '-q'])
   const gitDir = sh(repo, ['rev-parse', '--absolute-git-dir'])
-  const lockPath = join(gitDir, 'dsh-memory-evolve', 'update.lock')
+  const lockPath = join(gitDir, 'dsh-memory-evolve-suite', 'update.lock')
   mkdirSync(dirname(lockPath), { recursive: true })
   // 写一个 1 小时前的死锁。
   writeFileSync(lockPath, JSON.stringify({ pid: 12345, token: 'dead', startedAt: Date.now() - 60 * 60 * 1000 }), 'utf8')
@@ -629,7 +629,7 @@ test('[P0-2] stale 锁可抢占', async () => {
 test('[P2-3] 损坏状态文件会备份 .corrupt-*', async () => {
   const { consumer } = setupRepo()
   const checker = createUpdateChecker({ repoDir: consumer, now: advancingClock() })
-  const cachePath = join(await stateDirOf(checker), 'dsh-memory-evolve', 'update-state.json')
+  const cachePath = join(await stateDirOf(checker), 'dsh-memory-evolve-suite', 'update-state.json')
   mkdirSync(dirname(cachePath), { recursive: true })
   writeFileSync(cachePath, '{corrupt!!', 'utf8')
   await checker.status()
@@ -648,12 +648,12 @@ async function stateDirOf(checker) {
 
 async function readCacheState(checker) {
   const d = await stateDirOf(checker)
-  return readJson(join(d, 'dsh-memory-evolve', 'update-state.json'), () => ({})).value
+  return readJson(join(d, 'dsh-memory-evolve-suite', 'update-state.json'), () => ({})).value
 }
 
 async function readTxState(checker) {
   const d = await stateDirOf(checker)
-  return readJson(join(d, 'dsh-memory-evolve', 'update-tx.json'), () => ({})).value
+  return readJson(join(d, 'dsh-memory-evolve-suite', 'update-tx.json'), () => ({})).value
 }
 
 // ---------------------------------------------------------------------------
@@ -893,7 +893,7 @@ test('[P0-2-v3] stale 阈值内（10 分钟）活跃锁不被抢占', async () =
   mkdirSync(repo)
   sh(repo, ['init', '-q'])
   const gitDir = sh(repo, ['rev-parse', '--absolute-git-dir'])
-  const lockPath = join(gitDir, 'dsh-memory-evolve', 'update.lock')
+  const lockPath = join(gitDir, 'dsh-memory-evolve-suite', 'update.lock')
   mkdirSync(dirname(lockPath), { recursive: true })
   // 5 分钟前的锁：仍在 stale 阈值内 → 不得抢占（v3 阈值 10 分钟）。
   writeFileSync(lockPath, JSON.stringify({ pid: 12345, token: 'active', startedAt: Date.now() - 5 * 60 * 1000 }), 'utf8')
@@ -904,19 +904,19 @@ test('[P0-2-v3] stale 阈值内（10 分钟）活跃锁不被抢占', async () =
 test('[P2-2-v3] fallback 标记延续：重启后新实例仍用 fallback 状态', async () => {
   const { consumer } = setupRepo()
   const fbDir = join(tempRoot(), 'fb')
-  // 触发 fallback 的方式：把 gitdir 下的 dsh-memory-evolve 目录位换成同名
+  // 触发 fallback 的方式：把 gitdir 下的 dsh-memory-evolve-suite 目录位换成同名
   // 文件（writeState 的 mkdirSync 会失败 → saveCache 切 fallbackDir）。
   const checker = createUpdateChecker({ repoDir: consumer, fallbackDir: fbDir, now: advancingClock() })
   const dir = await stateDirOf(checker)
-  // 把 <gitdir>/dsh-memory-evolve 目录删掉，换成一个同名文件：后续 mkdirSync
+  // 把 <gitdir>/dsh-memory-evolve-suite 目录删掉，换成一个同名文件：后续 mkdirSync
   // 失败 → saveCache 走 fallback。
-  const meDir = join(dir, 'dsh-memory-evolve')
+  const meDir = join(dir, 'dsh-memory-evolve-suite')
   rmSync(meDir, { recursive: true, force: true })
   writeFileSync(meDir, 'block', 'utf8') // 目录位被文件占据
   const s = await checker.status()
   assert.equal(s.status, 'outdated')
   // fallback 标记已写入。
-  const markPath = join(fbDir, 'dsh-memory-evolve-fallback.json')
+  const markPath = join(fbDir, 'dsh-memory-evolve-suite-fallback.json')
   assert.equal(existsSync(markPath), true, 'fallback 标记应持久化')
   // 模拟重启：新 checker 实例（同 fallbackDir）→ 延续 fallback 状态。
   const checker2 = createUpdateChecker({ repoDir: consumer, fallbackDir: fbDir, now: advancingClock() })
@@ -1011,7 +1011,7 @@ test('[2026-08-14 回归] 读时一致性修正：旧 bug 写入的错误 localT
   // （写 0 会得到 ~17 亿 ms 差值 > TTL 被判定过期；写 Date.now() 会因
   // advancingClock 基准固定而成为未来时间戳，两者都会强制重检）。
   const tWrite = clock()
-  const cachePath = join(await stateDirOf(checker), 'dsh-memory-evolve', 'update-state.json')
+  const cachePath = join(await stateDirOf(checker), 'dsh-memory-evolve-suite', 'update-state.json')
   mkdirSync(dirname(cachePath), { recursive: true })
   writeFileSync(cachePath, JSON.stringify({
     schemaVersion: 1,
@@ -1105,7 +1105,7 @@ test('[Codex P1-2] 读时修正与重启派生交互：旧进程保留重启提�
   sh(consumer, ['fetch', '-q', 'origin', `refs/tags/v1.1.0:refs/remotes/origin/v1.1.0`])
   sh(consumer, ['checkout', '-q', '--detach', sha])
   const tWrite = clock()
-  const meDir = join(await stateDirOf(oldChecker), 'dsh-memory-evolve')
+  const meDir = join(await stateDirOf(oldChecker), 'dsh-memory-evolve-suite')
   mkdirSync(meDir, { recursive: true })
   writeFileSync(join(meDir, 'update-state.json'), JSON.stringify({
     schemaVersion: 1, repoPath: consumer, remoteUrl,

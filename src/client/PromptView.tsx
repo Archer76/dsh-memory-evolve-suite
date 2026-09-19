@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — 提示词 tab（conversation.view 第四个 entry）。
+ * dsh-memory-evolve-suite — 提示词 tab（conversation.view 第四个 entry）。
  *
  * 提示词管理器：可复用的指令范式资产库 + 注入执行器。
  *   - 库：CRUD + 分类 + 标签 + 搜索筛选 + 复制 + 使用统计；来源以用户
@@ -625,7 +625,7 @@ export function PromptView(props: ConvViewProps & PromptViewProps): JSX.Element 
       .replace('{ending}', ending))
     await load()
     setShowInjections(true)
-    window.dispatchEvent(new CustomEvent('dsh-memory-evolve:badge-change'))
+    window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:badge-change'))
   }
 
   /** 注入选中提示词（次数/间隔来自自由数字输入框，自定义区用）。 */
@@ -683,7 +683,7 @@ export function PromptView(props: ConvViewProps & PromptViewProps): JSX.Element 
       showNotice(data.steered ? say('injectedNow').replace('{name}', name) : say('injectedNowFallback').replace('{name}', name))
       await load()
       setShowInjections(true)
-      window.dispatchEvent(new CustomEvent('dsh-memory-evolve:badge-change'))
+      window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:badge-change'))
     } catch (err) {
       showError(errText(err))
     }
@@ -762,7 +762,7 @@ export function PromptView(props: ConvViewProps & PromptViewProps): JSX.Element 
       await api(`/memory-evolve/api/prompts/injections/${encodeURIComponent(id)}`, { method: 'DELETE' })
       showNotice(say('stoppedInjection'))
       await load()
-      window.dispatchEvent(new CustomEvent('dsh-memory-evolve:badge-change'))
+      window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:badge-change'))
     } catch (err) {
       showError(errText(err))
     }

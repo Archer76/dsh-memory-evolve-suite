@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — 记忆同步 Tab（conversation.view entry，跟随 syncEnabled）。
+ * dsh-memory-evolve-suite — 记忆同步 Tab（conversation.view entry，跟随 syncEnabled）。
  *
  * 三个子 Tab（2026-08-11 用户拍板：项目与全局是两个独立系统，必须分开）：
  *   1. 本项目    —— 项目记忆（KEY/日志/归档/项目待办）的同步开关与操作：

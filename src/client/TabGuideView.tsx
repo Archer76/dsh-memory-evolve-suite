@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — generic tab guide panel (各 Tab 的「指南」子面板)。
+ * dsh-memory-evolve-suite — generic tab guide panel (各 Tab 的「指南」子面板)。
  *
  * 渲染结构化的功能指南：若干 section，每个含 图标 + 标题 + 说明段落 +
  * 要点列表。样式复用 me- 前缀（styles.css：me-panel / me-block / me-heading /

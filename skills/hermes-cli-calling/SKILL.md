@@ -1,6 +1,6 @@
 ---
 name: hermes-cli-calling
-x-provider: dsh-memory-evolve
+x-provider: dsh-memory-evolve-suite
 x-version: 1
 description: "Use when the user wants to invoke Hermes Agent from the command line without entering the interactive TUI — one-shot queries, scripting/piping, non-interactive task execution. Covers hermes chat -q / hermes -z, common flags (-Q, --max-turns, -t, -s, -m, --image, --yolo, -c/--resume), pipe usage, and alternative non-interactive surfaces (cron, send, proxy, acp). 触发场景:用户在命令行直接让 Hermes 干活、不进交互界面、写脚本调用、管道传参、定时任务。"
 version: 1.0.0
@@ -11,7 +11,7 @@ metadata:
   hermes:
     tags: [hermes, cli, oneshot, scripting, non-interactive]
 ---
-<!-- 本技能由 dsh-memory-evolve 插件（COI 调度模块）内置提供：源头随插件升级同步，禁用请到「技能管理」Tab -->
+<!-- 本技能由 dsh-memory-evolve-suite 插件（COI 调度模块）内置提供：源头随插件升级同步，禁用请到「技能管理」Tab -->
 
 
 # 在 CLI 里直接调用 Hermes 做事(不进 TUI)

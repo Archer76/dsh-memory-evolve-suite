@@ -1,10 +1,10 @@
 ---
 name: grok-cli-calling
-x-provider: dsh-memory-evolve
+x-provider: dsh-memory-evolve-suite
 x-version: 1
 description: Use when the user wants to invoke the Grok CLI from the command line without entering the interactive TUI — one-shot quick queries, scripting/piping, non-interactive task execution, structured JSON output, or resuming a session. Covers `grok -p/--single` prompt mode, --output-format, --json-schema, -m model override, -c/--continue and -r/--resume, --permission-mode/--sandbox, and subcommands (agent, sessions, export, memory, mcp, plugin, doctor, login). 触发场景：用户在命令行直接让 Grok 干活、不进交互界面、快速一次性提问、写脚本调用、管道传参、非交互调用 grok。
 ---
-<!-- 本技能由 dsh-memory-evolve 插件（COI 调度模块）内置提供：源头随插件升级同步，禁用请到「技能管理」Tab -->
+<!-- 本技能由 dsh-memory-evolve-suite 插件（COI 调度模块）内置提供：源头随插件升级同步，禁用请到「技能管理」Tab -->
 
 
 # 在 CLI 里直接调用 Grok 干活（不进 TUI）

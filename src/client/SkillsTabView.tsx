@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — skills tab (conversation.view entry).
+ * dsh-memory-evolve-suite — skills tab (conversation.view entry).
  *
  * 独立技能 Tab（从原「记忆技能待办」Tab 拆分而来）：两个子 tab——
  *   「待确认技能建议」：后台审查产出的新技能队列，采纳后移入技能库
@@ -8,7 +8,7 @@
  *     dsh-skill-browser 插件（SkillsBrowser，API 前缀 /skills-manager 不变）。
  *
  * 子 tab 徽标显示待确认技能数（/api/badge 的 skills 字段）：30s 轮询 +
- * 监听 dsh-memory-evolve:badge-change 事件即时刷新；任一队列变更后由
+ * 监听 dsh-memory-evolve-suite:badge-change 事件即时刷新；任一队列变更后由
  * onChanged 主动触发事件，让会话页标签的小红点同步更新。
  *
  * 样式复用 mt- 前缀（styles.css：mt-panel / mt-file-tabs / mt-feature-count）。
@@ -130,10 +130,10 @@ export function SkillsTabView(props: ConvViewProps & SkillsTabViewProps): JSX.El
     pollBadge()
     const timer = window.setInterval(pollBadge, 30_000)
     const onChange = (): void => pollBadge()
-    window.addEventListener('dsh-memory-evolve:badge-change', onChange)
+    window.addEventListener('dsh-memory-evolve-suite:badge-change', onChange)
     return () => {
       window.clearInterval(timer)
-      window.removeEventListener('dsh-memory-evolve:badge-change', onChange)
+      window.removeEventListener('dsh-memory-evolve-suite:badge-change', onChange)
     }
   }, [pollBadge])
 
@@ -182,7 +182,7 @@ export function SkillsTabView(props: ConvViewProps & SkillsTabViewProps): JSX.El
             // 队列变更后：刷新本组件徽标，并通知宿主层（index.ts）立即重查
             // badge，让会话页标签的小红点即时更新（不等 30s 轮询）。
             pollBadge()
-            window.dispatchEvent(new CustomEvent('dsh-memory-evolve:badge-change'))
+            window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:badge-change'))
           }}
         />
       )}

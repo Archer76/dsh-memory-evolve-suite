@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — 提示词管理器（prompts.js）测试。
+ * dsh-memory-evolve-suite — 提示词管理器（prompts.js）测试。
  *
  * 覆盖：PromptStore CRUD/seed/统计、InjectionStore 回合计数（tickTurn）、
  * 变量展开、快照段渲染、Web API 全路由、agent/turn-stopping 集成。

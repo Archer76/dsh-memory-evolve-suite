@@ -1,7 +1,7 @@
 /**
  * SkillsBrowser — 技能中心三栏视图（技能列表 / 目录树 / 文件查看编辑器）。
  *
- * Merged into dsh-memory-evolve from the standalone dsh-skill-browser
+ * Merged into dsh-memory-evolve-suite from the standalone dsh-skill-browser
  * plugin; rendered as the "技能管理" sub-tab of the session memory tab.
  * The API prefix (/skills-manager) is unchanged — the host half serves the
  * same routes. 纯展示组件：数据全部通过 fetch 走 /skills-manager/api，样式由

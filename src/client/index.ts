@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — client entry.
+ * dsh-memory-evolve-suite — client entry.
  *
  * Registers three session tabs ('conversation.view') — the ONLY
  * memory-management surface (the former settings-panel section was
@@ -288,7 +288,7 @@ export const zh = {
   'version.restart.title': '等待重启',
   'version.restart.hint': '新版本代码已写入磁盘，请先重启 dsh web，再刷新浏览器（仅刷新页面不会加载新代码）。',
   'version.releaseNotes': '发布说明',
-  'version.unsupported.hint': '当前安装方式不支持自动检测（需要 git clone 安装）。请用 `git clone git@github.com:csyangwen/dsh-memory-evolve.git` 重新安装后使用。',
+  'version.unsupported.hint': '当前安装方式不支持自动检测（需要 git clone 安装）。本构建为再分发版本（dsh-memory-evolve-suite），请从你获取本包的来源重新安装。',
   // 状态说明码（服务端只下发 noteCode，文案在前端映射，CodeX 复审 P2-4）。
   'version.note.no-release': '远端仓库暂无发布版本（v0.x.y tag）。',
   'version.note.outdated': '检测到新版本，可在下方点击更新（更新需重启 dsh web 生效）。',
@@ -1105,7 +1105,7 @@ export const en: Record<MemoryEvolveKey, string> = {
   'version.restart.title': 'Restart required',
   'version.restart.hint': 'New code is on disk. Restart dsh web first, then refresh the browser (a page refresh alone will not load the new code).',
   'version.releaseNotes': 'Release notes',
-  'version.unsupported.hint': 'Auto-check requires a git clone install. Reinstall with `git clone git@github.com:csyangwen/dsh-memory-evolve.git` to enable it.',
+  'version.unsupported.hint': 'Auto-check requires a git clone install. This is a redistributed build (dsh-memory-evolve-suite); reinstall from the source you obtained it from.',
   // status note codes (server sends codes only; text lives here).
   'version.note.no-release': 'No release tags (v0.x.y) on the remote yet.',
   'version.note.outdated': 'A new version is available — update below (restart dsh web afterwards).',
@@ -2080,8 +2080,8 @@ export function apply(ctx: Context): void {
       // this event after a mutation — re-poll immediately so the red-dot
       // label updates without waiting for the next 30s poll.
       const onTabChanged = (): void => pollBadge()
-      window.addEventListener('dsh-memory-evolve:badge-change', onTabChanged)
-      ctx.effect(() => () => window.removeEventListener('dsh-memory-evolve:badge-change', onTabChanged), 'memory-evolve: memory tab badge listener')
+      window.addEventListener('dsh-memory-evolve-suite:badge-change', onTabChanged)
+      ctx.effect(() => () => window.removeEventListener('dsh-memory-evolve-suite:badge-change', onTabChanged), 'memory-evolve: memory tab badge listener')
     })
     .catch(() => { /* the tab is optional; a failure just leaves it hidden */ })
   ctx.effect(() => () => {
@@ -2159,8 +2159,8 @@ export function apply(ctx: Context): void {
       ctx.effect(() => () => clearInterval(coiTimer), 'memory-evolve: coi tab badge poller')
       // 派发任务/任务状态变化后（CoIView 触发 badge-change）立即重查红点。
       const onCoiBadgeChange = (): void => pollCoiRunning()
-      window.addEventListener('dsh-memory-evolve:badge-change', onCoiBadgeChange)
-      ctx.effect(() => () => window.removeEventListener('dsh-memory-evolve:badge-change', onCoiBadgeChange), 'memory-evolve: coi tab badge listener')
+      window.addEventListener('dsh-memory-evolve-suite:badge-change', onCoiBadgeChange)
+      ctx.effect(() => () => window.removeEventListener('dsh-memory-evolve-suite:badge-change', onCoiBadgeChange), 'memory-evolve: coi tab badge listener')
     })
     .catch(() => { /* COI 未启用：Tab 保持隐藏 */ })
   ctx.effect(() => () => {
@@ -2356,8 +2356,8 @@ export function apply(ctx: Context): void {
       const promptBadgeTimer = setInterval(pollPromptBadge, BADGE_POLL_MS)
       ctx.effect(() => () => clearInterval(promptBadgeTimer), 'memory-evolve: prompt tab badge poller')
       const onPromptBadgeChange = (): void => pollPromptBadge()
-      window.addEventListener('dsh-memory-evolve:badge-change', onPromptBadgeChange)
-      ctx.effect(() => () => window.removeEventListener('dsh-memory-evolve:badge-change', onPromptBadgeChange), 'memory-evolve: prompt tab badge listener')
+      window.addEventListener('dsh-memory-evolve-suite:badge-change', onPromptBadgeChange)
+      ctx.effect(() => () => window.removeEventListener('dsh-memory-evolve-suite:badge-change', onPromptBadgeChange), 'memory-evolve: prompt tab badge listener')
     })
     .catch(() => { /* host 端不可用：Tab 保持隐藏 */ })
   ctx.effect(() => () => {

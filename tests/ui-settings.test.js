@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — DSH UI 设置模块（宿主端）测试。
+ * dsh-memory-evolve-suite — DSH UI 设置模块（宿主端）测试。
  *
  * 验证 installUiSettings：状态探测端点 GET /api/ui-settings/state 返回
  * { enabled: true }、其他路径 404、dispose 清理注册。

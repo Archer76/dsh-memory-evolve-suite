@@ -1,5 +1,5 @@
 /**
- * dsh-memory-evolve — 会话书签：轮尾星标按钮的 **DOM 注入器**（B 方案，用户拍板）。
+ * dsh-memory-evolve-suite — 会话书签：轮尾星标按钮的 **DOM 注入器**（B 方案，用户拍板）。
  *
  * ## 为什么不用 turnTail 槽
  * `conversation.chat.turnTail` 是 chain 槽（first-wins，一次只能活一个 entry），

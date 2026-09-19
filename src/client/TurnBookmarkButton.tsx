@@ -133,7 +133,7 @@ export function TurnBookmarkButton(props: TurnBookmarkButtonProps): JSX.Element 
             label: data.bookmark.label,
           })
           // 通知书签列表 Tab 刷新（若已打开）。
-          window.dispatchEvent(new CustomEvent('dsh-memory-evolve:bookmarks-change'))
+          window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:bookmarks-change'))
         })
         .catch((error: Error) => {
           window.alert(t('bookmark.error', { message: error.message }))
@@ -151,7 +151,7 @@ export function TurnBookmarkButton(props: TurnBookmarkButtonProps): JSX.Element 
             anchorKey: data.bookmark.anchorKey ?? null,
             label: data.bookmark.label,
           })
-          window.dispatchEvent(new CustomEvent('dsh-memory-evolve:bookmarks-change'))
+          window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:bookmarks-change'))
         })
         .catch((error: Error) => {
           window.alert(t('bookmark.error', { message: error.message }))
@@ -174,7 +174,7 @@ export function TurnBookmarkButton(props: TurnBookmarkButtonProps): JSX.Element 
     })
       .then(() => {
         setBookmark(null)
-        window.dispatchEvent(new CustomEvent('dsh-memory-evolve:bookmarks-change'))
+        window.dispatchEvent(new CustomEvent('dsh-memory-evolve-suite:bookmarks-change'))
       })
       .catch((error: Error) => {
         window.alert(t('bookmark.error', { message: error.message }))

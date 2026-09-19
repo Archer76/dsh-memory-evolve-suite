@@ -1,6 +1,6 @@
 # COI 调度（de_coi）使用文档
 
-> dsh-memory-evolve 插件的 COI 调度模块：把任务派给外部 CLI 代理（kimi / codex / grok / hermes 或任意自定义 CLI），统一调度、实时看进度、会话分层管理、记忆上下文注入。
+> dsh-memory-evolve-suite 插件的 COI 调度模块：把任务派给外部 CLI 代理（kimi / codex / grok / hermes 或任意自定义 CLI），统一调度、实时看进度、会话分层管理、记忆上下文注入。
 > **默认禁用**：先在「Memory Evolve 设置」Tab →「配置」打开「COI 调度」开关（工具即时生效，Tab 刷新后出现）。
 
 ---

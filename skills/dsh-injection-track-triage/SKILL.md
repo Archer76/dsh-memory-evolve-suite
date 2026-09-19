@@ -20,7 +20,7 @@ x-version: 1
 
 ## 根因（两条分支，同一件事）
 
-`dsh-memory-evolve` 把项目 KEY 记忆注册为提示词 context `memory:snapshot`（每步渲染、现读磁盘）；
+`dsh-memory-evolve-suite` 把项目 KEY 记忆注册为提示词 context `memory:snapshot`（每步渲染、现读磁盘）；
 `@deepseek-ai/dsh-system-prompt` 的 `interpolate()` 扫到**连续两个左花括号**就当作变量引用：
 
 | 分支 | 条件 | 文案 | 位置 |
