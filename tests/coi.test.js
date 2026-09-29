@@ -754,7 +754,7 @@ test('wakeOnComplete: idle owner gets followup (完成唤醒), 消息无摘要�
   // 2026-08-13 用户拍板：完成消息不携带输出摘要截取，直接给日志文件路径
   assert.ok(!message.content[0].text.includes('摘要：'), '消息不得携带摘要截取')
   assert.match(message.content[0].text, /日志文件/, '消息必须给出完整日志文件路径')
-  assert.equal(message.source.kind, 'plugin')
+  assert.equal(message.source.kind, 'dsh-memory-evolve-suite')
   assert.equal(message.source.form, 'notice')
   assert.equal(typeof message.id, 'string')
   rmSync(dir, { recursive: true, force: true })
