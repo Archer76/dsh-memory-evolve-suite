@@ -6,6 +6,14 @@ All version changes for this repository, in reverse chronological order.
 
 ---
 
+## 2026-09-29
+
+### Fixed
+
+- **Notifications rejected on DSH 0.1.7-rc.2, killing the receiving turn (`format v4 message requires a producer-owned source kind`)**: the new session admission gate (the shared `assertV4RowAdmission`, used by `encodeEvent` on write and `decodeRow` on read) **rejects exactly one source shape** — `source.kind === 'plugin'`. A missing or empty kind is *not* checked on the write side (only on read), so the two sides have different scopes; do not conflate them. Three delivery sites in the COI and workspace-coordination modules still used the old shape `{kind:'plugin', plugin:'dsh-memory-evolve-suite'}`, so **any session receiving a delivery had that turn fail outright** — COI task-completion notices, the workspace parallel-work board, and the post-tool occupancy-conflict context all turned the receiver's turn into an error the moment they were delivered. **Failed events never reach the log**, so the session log itself looks perfectly healthy (the case we diagnosed had all 69 rows fully compliant), which makes this easy to misread as log corruption or a broken workspace: what actually matters is *who delivers, and in what shape*. Fix: all four sites now use the plugin's own kind, `'dsh-memory-evolve-suite'` — the same approach the plugin's advisor path already used with `'advisor'` (every producer names itself). The plugin's decision helpers (`isVisibleUserMessage` / `isHumanInputEvent` / `lastTurnWasMessage`) are all **whitelist-style** — only `kind === 'user'` counts as human input — so read-side behavior is unchanged: these notices still do not count as user turns and still stay out of the review surface. Judged against real session events with positive and negative controls (verbatim from disk accepted / injected `kind:'plugin'` rejected with the exact text users saw / injected new kind accepted). **The change is confined to `lib/`**, which is hand-written source committed directly; `scripts/build.mjs` builds only the client bundle `lib/client.js`, so no artifact rebuild is involved.
+
+---
+
 ## 2026-09-09
 
 ### Fixed

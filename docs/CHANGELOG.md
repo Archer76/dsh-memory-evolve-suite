@@ -6,6 +6,14 @@
 
 ---
 
+## 2026-09-29
+
+### 修复
+
+- **DSH 0.1.7-rc.2 下通知投递被拒，接收会话整回合失败（`format v4 message requires a producer-owned source kind`）**：新版 DSH 的会话准入（写入侧 `encodeEvent` 与读取侧 `decodeRow` 共用的 `assertV4RowAdmission`）**只拒一种来源形态**——`source.kind === 'plugin'`；kind 缺失或空串在**写入侧并不检查**（那是读取侧才管的），两侧范围不同，别混为一谈。本插件的 COI 与工作区协调三处投递仍用旧形态 `{kind:'plugin', plugin:'dsh-memory-evolve-suite'}`，于是**任何被投递的会话那一回合直接失败**——COI 任务完成通知、工作区并行公告板、工具执行后的占用冲突上下文，全都会在投递瞬间把接收方回合打成 error。**失败事件不会落盘**，所以会话日志本身看起来完全健康（实测那条例 69 行事件逐行合规），排障时极易误判成日志损坏或工作区损坏：真正该看的是「谁在投递、投的是什么形态」。修复：四处改用插件自有 kind `'dsh-memory-evolve-suite'`（与本插件 advisor 路径既有的 `'advisor'` 同款做法，即「每个生产者用自己的名字」）。该插件的判定逻辑（`isVisibleUserMessage` / `isHumanInputEvent` / `lastTurnWasMessage`）全是**白名单式**——只认 `kind === 'user'` 为人类输入，故本次改动不改变任何读取侧行为：通知仍不计入用户回合、仍不进评审表面。判据用真实会话事件做基底、正负对照齐备（磁盘原样 accept ／ 注入 `kind:'plugin'` reject 且错误文本与用户所见一字不差 ／ 注入新 kind accept）。**改动只在 `lib/`**：该目录是手写源码直接入库，`scripts/build.mjs` 只构建客户端 `lib/client.js`，本次不涉及构建产物。
+
+---
+
 ## 2026-09-09
 
 ### 修复
